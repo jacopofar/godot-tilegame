@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sara-cal.png-ec94e1836d4bd90b04c14799080fe276.stex"
+path="res://.import/MainGuySpriteSheet.png-a59f61b39ea5219b42d4d6d12259ca30.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sara-cal.png"
-dest_files=[ "res://.import/sara-cal.png-ec94e1836d4bd90b04c14799080fe276.stex" ]
+source_file="res://sprites/MainGuySpriteSheet.png"
+dest_files=[ "res://.import/MainGuySpriteSheet.png-a59f61b39ea5219b42d4d6d12259ca30.stex" ]
 
 [params]
 

@@ -17,6 +17,7 @@ func _physics_process(delta):
 		direction.x = 0
 
 	direction = direction.normalized()
+	
 	var movement = speed * direction * delta
 	# warning-ignore:return_value_discarded
 	move_and_collide(movement)

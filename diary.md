@@ -14,8 +14,8 @@ Same with [this other tileset](https://opengameart.org/content/lpc-tile-atlas) t
 In Tiled, create a new tileset and use this file. Choose white as the transparent color and "embed into map" to avoid an extra file (optional).
 Now I can draw some tiles in the map and save it.
 
-In Godot, I create a scene in the project called `Pl;ayer` with a KinematicBody2D as the root element called `Player`.
-I download the [Sara - Sizard](https://opengameart.org/content/sara-wizard) spritesheet and put it under `sprites/sara-cal.png`.
+In Godot, I create a scene in the project called `Player` with a KinematicBody2D as the root element called `Player`.
+I download the [RPG character](https://opengameart.org/content/rpg-character) spritesheet and put it under `sprites/MainGuySpriteSheet.png`.
 In Godot we create a Sprite called `Sprite` under the `Player` node, and load the character texture. It's a spritesheet but for now I don't care about the animation. By setting Vframes and Hframes properties in the sprite we just pick one of the elements from the sheet.
 Next, by adding a CollisionShape2D as another child of Player and using Shape -> New RectangleShape2D I can place a collision area around the sprite.
 
@@ -68,3 +68,7 @@ Now if we play the game the character can move around.
 Let's add some obstacle to the map: in Tiled we add another layer to have objects and a background blend together. Then we can put some obstacle like a stack of wood. Then, click on Edit Tileset and add a collision to this tile.
 
 Save the map in Tiled and play the game in Godot, you now have the collision with the wood pile!
+
+There's a last step to conclude the basic setup, and it is the camera: if you move the character out of the screen you'll notice it keeps moving but the camera doesn't.
+
+To do this add a Camera2D object to the Player scene, and ensure its property `Current` is on (by default is not). Then you probably want to set the `drag margin` properties to on as well, so the camera will move only when the character is a bit outside the center, not all the time, which is nicer for the human playing the game.
