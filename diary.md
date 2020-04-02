@@ -72,3 +72,47 @@ Save the map in Tiled and play the game in Godot, you now have the collision wit
 There's a last step to conclude the basic setup, and it is the camera: if you move the character out of the screen you'll notice it keeps moving but the camera doesn't.
 
 To do this add a Camera2D object to the Player scene, and ensure its property `Current` is on (by default is not). Then you probably want to set the `drag margin` properties to on as well, so the camera will move only when the character is a bit outside the center, not all the time, which is nicer for the human playing the game.
+
+
+## Player animation
+
+The sprite includes the frames for the player in different poses, so to animate it we have to change the frame fast enough to create the illusion of the movement, and pick the right ones to match the direction of the player.
+
+But first we have a problem: if I change the sprite hframe/vframe/frame properties to get the other sprites for the same object, representing different states during the movement, they are cut and/or "jumpy". This happens because the spritesheet I used has some space between the elements, and godot expects a grid. I didn't find an easy way to deal with this spacing, if you do let me know. What I do is simply edit the image and make it compact. I use Piskel, a FOSS pixel editor which has a very neat support for spritesheet, including the possibility to see the animation as we edit it, which really saves a lot of time!
+
+This is managed by a specific type of node called `AnimationPlayer`.
+Let's add it to the Player scene, on the bottom of the e3ditor there's an animation panel where we define the animations.
+Clicking on `Animation -> New` we set up the `right` animation.
+Now, looking at the sprite properties you can see there's a key simbol close to most of them: clicking on it we can add a keyframe, which is a reference value that will be caltered by the animation. Moving in the animation timeline we can change the value and press the key button again to store different states. You can click on the button on the right of the animation track to set the mode, I used continuous, and in the AnimationPlayer you can set the speed, I used 3.
+
+Now we have to map the animation sequences to the movement, so the code to move the character becomes:
+
+```GDScript
+
+if abs(direction.x) > abs(direction.y):
+		direction.y = 0
+		if direction.x > 0:
+			$AnimationPlayer.play("right")
+		else:
+			$AnimationPlayer.play("left")
+	else:
+		direction.x = 0
+		if direction.y > 0:
+			$AnimationPlayer.play("down")
+		else:
+			$AnimationPlayer.play("up")
+```
+
+the `$` sign is a concise way to refer to a node down the hierarchy, so we invoke the `play` method of the AnimationPlayer and it runs the animation for us by changing the properties of the sprite according to the keyframes.
+
+Notice that we can test only the player scene and not load the rest of the game by clicking on the `Play Scene` button on the top right.
+
+When we stop moving the animation will continue, because we never said to stop it! To fix this, add this instruction:
+
+```GDScript
+	if direction.x == 0 and direction.y == 0:
+		$AnimationPlayer.stop()
+```
+
+now when we stop pressing the arrow button the animation goes at the first keyframe and stops.
+

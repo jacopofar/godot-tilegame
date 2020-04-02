@@ -13,9 +13,18 @@ func _physics_process(delta):
 	# avoid diagonal movement
 	if abs(direction.x) > abs(direction.y):
 		direction.y = 0
+		if direction.x > 0:
+			$AnimationPlayer.play("right")
+		else:
+			$AnimationPlayer.play("left")
 	else:
 		direction.x = 0
-
+		if direction.y > 0:
+			$AnimationPlayer.play("down")
+		else:
+			$AnimationPlayer.play("up")
+	if direction.x == 0 and direction.y == 0:
+		$AnimationPlayer.stop()
 	direction = direction.normalized()
 	
 	var movement = speed * direction * delta
