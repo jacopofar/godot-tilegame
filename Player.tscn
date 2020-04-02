@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/sara-cal.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11.3221, 21.8608 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 26.4273, 43.5353 )
+scale = Vector2( 0.874781, 0.844097 )
+texture = ExtResource( 1 )
+vframes = 7
+hframes = 18
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 24.1011, 43.2108 )
+shape = SubResource( 1 )
