@@ -3,6 +3,8 @@ This document logs the steps followed to create this project.
 ## Basic project setup
 First, we create an empty Godot 3.2 project and put it under git version control, to track all the changes.
 
+In Project Settings go to the window section and set mode to 2D and aspect to "keep", to ensure it will have a consistent look across screen sizes, and in rendering > quality > 2d enable the option "use pixel snap" to have a better display of single pixels.
+
 Then we install the [Tiled map importer](https://github.com/vnen/godot-tiled-importer) plugin. It has to be activated (Project -> Project Settings -> plugin tab).
 
 Using tiled, we create an empty orthogonal map, with squared cells of size 32 pixels.
