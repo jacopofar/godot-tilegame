@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15.3165, 17.7216 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "down"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -21,7 +21,7 @@ tracks/0/keys = {
 "values": [ 0, 2 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "left"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -36,8 +36,7 @@ tracks/0/keys = {
 "values": [ 9, 11 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "right"
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -89,7 +88,7 @@ drag_margin_v_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 3.0
-anims/down = SubResource( 3 )
-anims/left = SubResource( 4 )
-anims/right = SubResource( 2 )
+anims/down = SubResource( 2 )
+anims/left = SubResource( 3 )
+anims/right = SubResource( 4 )
 anims/up = SubResource( 5 )
