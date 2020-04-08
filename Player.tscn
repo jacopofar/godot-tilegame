@@ -3,8 +3,9 @@
 [ext_resource path="res://sprites/MainGuySpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.3165, 17.7216 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 10.7134
+height = 12.2238
 
 [sub_resource type="Animation" id=2]
 resource_name = "down"
