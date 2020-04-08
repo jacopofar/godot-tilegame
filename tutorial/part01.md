@@ -12,3 +12,7 @@ Notice that this is used by Tiled to make the tilemap design easier, the result 
 The editor let us edit the tileset, but we want also to place interesting things in the world, like NPC, objects, enemies and so on.
 Tiled offers the possibility to insert objects. You can right click to create a new object layer, and insert stuff in there. You can also give objects names and properties. However, by default nothing appears in Godot because this is metadata and has no clear visualization.
 To have the objects mapped to something concrete in the scene, we need to do an association between them and the nodes using an import script.
+So the process will be this:
+* we create a Scene in Godot, e.g. `Treasure.tscn`
+* we set up a point in an object layer with type=Treasure
+* we write an import script to instantiate a Treasure scene where we have the point
