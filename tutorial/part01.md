@@ -50,7 +50,7 @@ extends Node
 func post_import(scene):
 	# Load scenes to instantiate and add to the level
 	var Treasure = load("res://Treasure.tscn")
-	
+
 	# The scene variable contains the nodes as you see them in the editor.
 	# scene itself points to the top node. Its children are the tile and object layers.
 	for node in scene.get_children():
@@ -76,7 +76,7 @@ func post_import(scene):
 					# Place the node on the object (top-left corner), and offset it by half a cell
 					# so it is centered on the object
 					new_instance.position = (object.position + Vector2(16, 16))
-					
+
 					# Add the node as a child of the scene and sets
 					# the scene as its owner. Otherwise, the scene doesn't get modified
 					scene.add_child(new_instance)
@@ -96,3 +96,5 @@ It goes through the layers and objects from Tiled and when it finds one it check
 Now if you click on Reimport the game will have a treasure chest that can be moved around in Tiled. Also, you can create multiple points with this otype and it will instantiate multiple treasure chests, which is what I did.
 
 Putting two treasure chests at 1 tile of distance and passing between them I noticed the collision was blocking the character, so I went to the Player scene and changed the collision shape to a `Capsule` with a small margin to make the movement smoother.
+
+Note that clicking on **Debug -> Visible collision shapes** you can see the collision areas when playing.
