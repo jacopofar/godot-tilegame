@@ -25,9 +25,10 @@ func _physics_process(delta):
 			$AnimationPlayer.play("up")
 	if direction.x == 0 and direction.y == 0:
 		$AnimationPlayer.stop()
-	direction = direction.normalized()
-	
-	var movement = speed * direction * delta
-	# warning-ignore:return_value_discarded
-	move_and_collide(movement)
+	else:
+		# try a movement only if there is something to do
+		direction = direction.normalized()
+		var movement = speed * direction * delta
+		# warning-ignore:return_value_discarded
+		move_and_collide(movement)
 

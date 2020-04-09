@@ -7,5 +7,7 @@ This project implements a 2D game based on Godot 3.2 and Tiled, with a step by s
 ## TODO
 - [x] Instantiate nodes based on map objects with an import script
 - [ ] Have the chest interact to an action button, by opening and showing some message
-- [ ] Pass properties from the Tiled map to the Godot instances, e.g. the name of the Treasure chest content and it's unique ID
+- [ ] Pass properties from the Tiled map to the Godot instances, e.g. the name of the Treasure chest content and its unique ID
+- [ ] Export for the browser
+- [ ] Add [Mouse movement](https://www.davidepesce.com/2019/10/14/godot-tutorial-5-1-dragging-player-with-mouse/) as alternative to keyboard, and try on mobile
 - [ ] Send the player position to a server
