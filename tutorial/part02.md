@@ -63,3 +63,20 @@ func on_interact():
 ```
 now when playing you will see this message in the console when interacting with the trasure chest.
 
+## Treasure chest action
+
+Let's add to the Treasure Chest scene a state to show the close/open state:
+
+```GDScript
+
+extends KinematicBody2D
+
+var opened = false
+
+func on_interact():
+	if opened:
+		print("Already opened...")
+	else:
+		$Sprite.frame = 1
+```
+this shows the open chest sprite after we interact with it.

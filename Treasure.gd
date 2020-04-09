@@ -1,5 +1,10 @@
 extends KinematicBody2D
 
+var opened = false
 
 func on_interact():
-	print("I am a tresure chest, they are interacting with me!")
+	if opened:
+		print("Already opened...")
+	else:
+		$Sprite.frame = 1
+		
