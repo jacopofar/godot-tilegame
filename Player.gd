@@ -31,4 +31,14 @@ func _physics_process(delta):
 		var movement = speed * direction * delta
 		# warning-ignore:return_value_discarded
 		move_and_collide(movement)
+		$RayCast2D.cast_to = direction.normalized() * 32
 
+func _input(event):
+	if event.is_action_pressed("interact"):
+		var target = $RayCast2D.get_collider()
+
+		if target != null:
+			if target.has_method("on_interact"):
+				target.on_interact()
+			else:
+				print_debug("Cannot interact with this")
