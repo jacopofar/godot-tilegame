@@ -79,4 +79,6 @@ func on_interact():
 	else:
 		$Sprite.frame = 1
 ```
-this shows the open chest sprite after we interact with it.
+this shows the open chest sprite after we interact with it. After it's open, we cannot open it again.
+
+I noticed at this point that when the chest is open the player character can walk on the upper part, because the collision area is now smaller than the sprite, but visually we expect the chest to cover the legs of the character. To adjust this I go to the KinematicBody2D Z-index property and set it to 1 (and leave the *Z as relative* option on). Now the trasure chest sprite is over the character one.
