@@ -77,8 +77,70 @@ func on_interact():
 	if opened:
 		print("Already opened...")
 	else:
+		opened = true
 		$Sprite.frame = 1
 ```
 this shows the open chest sprite after we interact with it. After it's open, we cannot open it again.
 
 I noticed at this point that when the chest is open the player character can walk on the upper part, because the collision area is now smaller than the sprite, but visually we expect the chest to cover the legs of the character. To adjust this I go to the KinematicBody2D Z-index property and set it to 1 (and leave the *Z as relative* option on). Now the trasure chest sprite is over the character one.
+
+## Text messages in the game
+
+`print` is useful for a quick experiment, but of course in a game we want to see the messages in the game itself.
+To do so, for now we'll go with a very basic solution to keep working on the game logic, and then will try something fancier.
+Let's create a scene called `ComicBubble.tscn`, in which we put a `CanvasLayer` as root node and then a Label and a ColorRect. The CanvasLayer has a few interesting properties: first of all it can be drawn above (or behind) everything which is good for HUD. Then, it's very easy to move it and all the child nodes within the viewport or not.
+On the text property of the label I write of course "Hello world!".
+I size the label to overlap and be a big smaller than the rectangle, center the text horizontally and vertically and set the color to black.
+As for the rectangle, I make it white and a bit transparent (the transparency comes from the alpha channel of the color).
+The center of the CanvasItem, that you see in the editor, will be used as the center when positioning it relative to the object, so I place everything a bit above it because that's where I would expect to see comic bubble appear.
+
+For the CanvasLayer script I simply write:
+
+```GDScript
+
+extends CanvasLayer
+
+func say(position: Vector2, text: String):
+	$Label.text = text
+	offset = position
+```
+
+so that the function can be used to set the text without caring about the underlying nodes.
+
+Then, the treasure chest `on_interact` code becomes:
+
+
+```GDScript
+
+func on_interact():
+	if opened:
+		print("Already opened...")
+	else:
+		opened = true
+		$Sprite.frame = 1
+		var comic = load("res://ComicBubble.tscn").instance()
+		comic.say(position, "I'm a chest!")
+		get_node(".").add_child(comic)
+```
+
+Now, if you open the chest you'll see a comic bubble on it.
+
+This is far from beautiful, and by fiddling with it you can notice several problems :
+
+* long messages break the comic bubble
+* we cannot have messages with more than one line
+* it's ugly: no animation, shades or fancy fonts
+* non-latin characters are not shown (this is just the font, except for RTL languages where the issue is more complex)
+* messages overlap and never go away, if tou open the two chest it will look ugly
+* No formatting, we cannot use bold or italic or colors
+
+these issues can be solved later by modifying the ComicBubble scene. Thanks to the way Godot organizes nodes and instances we can encapsulate all the logic in this scene without affecting how the game uses it.
+
+However, the current approach still needs a few lines of code to show a message.
+It would be nice to have a one-liner, and maybe a way to meep track of them so that old messages can disappear when new ones are created.
+
+To do this, we can use a [Singletone (or Autoload)](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html)
+
+## Use an Autoload script to offer message functionality
+
+TO DO

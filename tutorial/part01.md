@@ -73,9 +73,7 @@ func post_import(scene):
 
 				if node_to_clone:
 					var new_instance = node_to_clone.instance()
-					# Place the node on the object (top-left corner), and offset it by half a cell
-					# so it is centered on the object
-					new_instance.position = (object.position + Vector2(16, 16))
+					new_instance.position = (object.position)
 
 					# Add the node as a child of the scene and sets
 					# the scene as its owner. Otherwise, the scene doesn't get modified

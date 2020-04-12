@@ -4,7 +4,7 @@
 [ext_resource path="res://Treasure.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.0221, 13.1865 )
+extents = Vector2( 14.8189, 15.8723 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 z_index = 1
