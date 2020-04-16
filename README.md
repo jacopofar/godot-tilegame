@@ -11,9 +11,9 @@ This project implements a 2D game based on Godot 3.2 and Tiled, with a step by s
 - [x] Show a message when the chest is open
 - [ ] Delegate message displaying to a singleton
 - [ ] Pass properties from the Tiled map to the Godot instances, e.g. the name of the Treasure chest content and its unique ID
-- [ ] Embellish the message bubble
-- [ ] Allow dialogues and choices using the message bubble
 - [ ] Export for the browser
 - [ ] Add [Mouse movement](https://www.davidepesce.com/2019/10/14/godot-tutorial-5-1-dragging-player-with-mouse/) as alternative to keyboard, and try on mobile
+- [ ] Embellish the message bubble
+- [ ] Allow dialogues and choices using the message bubble
 - [ ] Make an NPC which moves around
 - [ ] Send the player position to a server
