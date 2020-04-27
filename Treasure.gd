@@ -8,7 +8,5 @@ func on_interact():
 	else:
 		opened = true
 		$Sprite.frame = 1
-		var comic = load("res://ComicBubble.tscn").instance()
-		comic.say(position, "I'm a chest!")
-		get_node(".").add_child(comic)
+		ComicBubble.say(self, "I'm a chest!")
 

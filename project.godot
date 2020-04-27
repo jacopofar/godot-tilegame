@@ -19,6 +19,10 @@ config/name="tileworld01"
 run/main_scene="res://GameMain.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ComicBubble="*res://ComicBubble.gd"
+
 [display]
 
 window/stretch/mode="2d"

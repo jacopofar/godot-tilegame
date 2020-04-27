@@ -9,7 +9,7 @@ This project implements a 2D game based on Godot 3.2 and Tiled, with a step by s
 - [x] Instantiate nodes based on map objects with an import script
 - [x] Have the chest interact to an action button, by opening
 - [x] Show a message when the chest is open
-- [ ] Delegate message displaying to a singleton
+- [x] Delegate message displaying to a singleton
 - [ ] Pass properties from the Tiled map to the Godot instances, e.g. the name of the Treasure chest content and its unique ID
 - [ ] Rearrange the resources in folders
 - [ ] Export for the browser

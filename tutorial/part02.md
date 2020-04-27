@@ -143,4 +143,26 @@ To do this, we can use a [Singletone (or Autoload)](https://docs.godotengine.org
 
 ## Use an Autoload script to offer message functionality
 
-TO DO
+First, go to Project Settings -> Autoload and add the ComicBubble scene to the objects. The name is by default `ComicBubble`, but you can change it: this is the name that will be used to invoke it.
+
+Now let's change `say` to this in the ComicBubble:
+
+```GDScript
+
+func say(target: Node2D, text: String):
+	var comic = load("res://ComicBubble.tscn").instance()
+	comic.get_node("Label").text = text
+	comic.offset = target.position
+	target.add_child(comic)
+
+```
+This doesn't change the logic, it simply assumes that a `target` element is given and that's the one which will get the message.
+
+Now the invocation, in the `TreasureChest` scene, can be changed in:
+
+```GDScript
+ComicBubble.say(self, "I'm a chest!")
+```
+
+this single line has the same effect, we only have to pass `self`. If you run it, the game works the same but the code is more concise. Moreover, if we later change the comic bubble logic we don't need to change all the invocations.
+
