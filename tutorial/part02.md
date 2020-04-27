@@ -166,3 +166,29 @@ ComicBubble.say(self, "I'm a chest!")
 
 this single line has the same effect, we only have to pass `self`. If you run it, the game works the same but the code is more concise. Moreover, if we later change the comic bubble logic we don't need to change all the invocations.
 
+## Pass properties from the Tiled map to the objects
+
+Now our two chests are identical, and show the same message. We could create something like a `TreasureChest2` with a different message, but we would have to map it in the `importer.gd` code, and would not be very flexible if we want to keep the map and its object in the tiled map.
+Instead, let's use the properties (like the "otype" that we used before) to store the description of the object contained into the chest, and use it to control the message from the chest without creating a new one.
+
+First, let's change the code for the chest. At the beginning, let's add `export var content_description: String = "[missing content]"` at the line 2.
+
+Then, change the line to show the comic bubble to this:
+```GDScript
+ComicBubble.say(self, "This chest contains:" + content_description)
+```
+
+Now the object has a string variable visible from the editor if you try to edit a tresure chest instance. The same variable is accessible by the code if we instantiate an instance.
+
+It's initialized to `[missing content]` to make obvious if we forgot to give it a meaninfgul value.
+
+In Tiled, create a `content_description` property for the two chests with something you like.
+
+Now we only need to have the description be copied from the map to the object instance. We do it by adding a line in `importer.gd`, right after the call to `instance()`:
+
+```GDScript
+new_instance.content_description = object.get_meta("content_description")
+```
+this will copy the value from the object read from the Tiled map to the property of the treasure chest instance.
+
+Note that the names of the Tiled property and the object variable can be different, but to avoid confusion I just try to use the same for both.

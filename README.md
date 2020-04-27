@@ -10,7 +10,7 @@ This project implements a 2D game based on Godot 3.2 and Tiled, with a step by s
 - [x] Have the chest interact to an action button, by opening
 - [x] Show a message when the chest is open
 - [x] Delegate message displaying to a singleton
-- [ ] Pass properties from the Tiled map to the Godot instances, e.g. the name of the Treasure chest content and its unique ID
+- [x] Pass properties from the Tiled map to the Godot instances, e.g. the name of the Treasure chest content and its unique ID
 - [ ] Rearrange the resources in folders
 - [ ] Export for the browser
 - [ ] Add [Mouse movement](https://www.davidepesce.com/2019/10/14/godot-tutorial-5-1-dragging-player-with-mouse/) as alternative to keyboard, and try on mobile

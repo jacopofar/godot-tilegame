@@ -1,4 +1,5 @@
 extends KinematicBody2D
+export var content_description: String = "[missing content]"
 
 var opened = false
 
@@ -8,5 +9,4 @@ func on_interact():
 	else:
 		opened = true
 		$Sprite.frame = 1
-		ComicBubble.say(self, "I'm a chest!")
-
+		ComicBubble.say(self, "This chest contains:" + content_description)
