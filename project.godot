@@ -25,6 +25,8 @@ ComicBubble="*res://HUD/ComicBubble.gd"
 
 [display]
 
+window/size/width=512
+window/size/height=512
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -52,6 +54,8 @@ interact={
 [rendering]
 
 quality/driver/driver_name="GLES2"
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
 quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false

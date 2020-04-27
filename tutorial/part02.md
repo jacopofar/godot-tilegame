@@ -194,9 +194,15 @@ during the map import, this will copy the value from the object read from the Ti
 
 Note that the names of the Tiled property and the object variable can be different, but to avoid confusion I just try to use the same for both.
 
+
 ## Reorganize the project files
 
 To reduce confusion, I think it's time to rearrange the files into folders. So I create the *HUD* folder to place the comic bubble and other UI elements later and *objects* to contain the chest. I also move the importer script inside *maps*.
 
 Moving the objects around requires some changes to the code:
-1. Change the paths in the `importer.gd` scripts
+
+1. Change the path in the `importer.gd` scripts to `res://objects/Treasure.tscn`
+2. Change the ComicBubble code to load `res://HUD/ComicBubble.tscn`
+3. In the resource properties for the Tiled map, update the post-import script to refer to the new position, then click reimport/
+
+For what I've seen so far, Godot is quite clear with the errors regarding a missing resource so it should be straightforward
