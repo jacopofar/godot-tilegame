@@ -3,7 +3,7 @@ extends Node
 # Traverse the node tree and replace Tiled objects
 func post_import(scene):
 	# Load scenes to instantiate and add to the level
-	var Treasure = load("res://Treasure.tscn")
+	var Treasure = load("res://objects/Treasure.tscn")
 	
 	# The scene variable contains the nodes as you see them in the editor.
 	# scene itself points to the top node. Its children are the tile and object layers.

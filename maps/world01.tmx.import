@@ -19,4 +19,4 @@ collision_layer=1
 embed_internal_images=false
 save_tiled_properties=false
 add_background=true
-post_import_script="res://importer.gd"
+post_import_script="res://maps/importer.gd"

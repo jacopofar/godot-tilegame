@@ -1,16 +1,16 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ComicBubble.gd" type="Script" id=1]
+[ext_resource path="res://HUD/ComicBubble.gd" type="Script" id=1]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 follow_viewport_enable = true
 script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -87.5831
-margin_top = -61.1574
-margin_right = 80.4169
-margin_bottom = -28.1574
+margin_left = -88.0
+margin_top = -61.0
+margin_right = 180.0
+margin_bottom = -8.0
 rect_pivot_offset = Vector2( -125.423, 183.571 )
 color = Color( 1, 1, 1, 0.862745 )
 __meta__ = {
@@ -18,10 +18,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = -84.8972
-margin_top = -57.5256
-margin_right = 77.1027
-margin_bottom = -29.5256
+margin_left = -32.0
+margin_top = -48.0
+margin_right = 129.0
+margin_bottom = -21.0
 custom_colors/font_color = Color( 0.392157, 0.392157, 0.392157, 1 )
 text = "Hello World!"
 align = 1

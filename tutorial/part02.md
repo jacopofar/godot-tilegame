@@ -189,6 +189,14 @@ Now we only need to have the description be copied from the map to the object in
 ```GDScript
 new_instance.content_description = object.get_meta("content_description")
 ```
-this will copy the value from the object read from the Tiled map to the property of the treasure chest instance.
+
+during the map import, this will copy the value from the object read from the Tiled map to the property of the treasure chest instance.
 
 Note that the names of the Tiled property and the object variable can be different, but to avoid confusion I just try to use the same for both.
+
+## Reorganize the project files
+
+To reduce confusion, I think it's time to rearrange the files into folders. So I create the *HUD* folder to place the comic bubble and other UI elements later and *objects* to contain the chest. I also move the importer script inside *maps*.
+
+Moving the objects around requires some changes to the code:
+1. Change the paths in the `importer.gd` scripts
