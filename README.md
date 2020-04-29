@@ -15,6 +15,7 @@ This project implements a 2D game based on Godot 3.2 and Tiled, with a step by s
   * Reorganize the folders a
 * [part 3](tutorial/part03.md)
   * Export the game so far for the web
+  * Add mouse and multitouch integration to work on mobile
 
 ## TODO
 - [x] Instantiate nodes based on map objects with an import script
@@ -24,7 +25,7 @@ This project implements a 2D game based on Godot 3.2 and Tiled, with a step by s
 - [x] Pass properties from the Tiled map to the Godot instances, e.g. the name of the Treasure chest content and its unique ID
 - [x] Rearrange the resources in folders
 - [x] Export for the browser
-- [ ] Add [Mouse movement](https://www.davidepesce.com/2019/10/14/godot-tutorial-5-1-dragging-player-with-mouse/) as alternative to keyboard, and try on mobile
+- [x] Add [Mouse movement](https://www.davidepesce.com/2019/10/14/godot-tutorial-5-1-dragging-player-with-mouse/) as alternative to keyboard, and try on mobile
 - [ ] Embellish the message bubble
 - [ ] Define an inventory as a shared object in autoload
 - [ ] Allow dialogues and choices using the message bubble
