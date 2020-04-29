@@ -2,13 +2,23 @@ extends KinematicBody2D
 
 # Player movement speed
 export var speed: int = 150
+export var interaction_range: float = 50.0
 
+var mouse_pressed: bool = false
+var touch_pressed: bool = false
+var touch_initial_direction: Vector2 =  Vector2(0, 1)
 
 func _physics_process(delta):
 	var direction: Vector2
-
-	direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	
+	if mouse_pressed:
+		direction = position.direction_to(get_global_mouse_position())
+	elif touch_pressed:
+		direction = touch_initial_direction	
+	else:
+		direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+		direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		
 
 	# avoid diagonal movement
 	if abs(direction.x) > abs(direction.y):
@@ -32,11 +42,31 @@ func _physics_process(delta):
 		# warning-ignore:return_value_discarded
 		move_and_collide(movement)
 		$RayCast2D.cast_to = direction.normalized() * 32
-
+		
+	
 func _input(event):
+	# see https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html
+	var is_interaction = false
 	if event.is_action_pressed("interact"):
+		is_interaction = true
+	
+	if event is InputEventScreenTouch:
+		touch_pressed = event.is_pressed()
+		var world_position = get_canvas_transform().xform_inv(event.position)
+		if position.distance_to(world_position) < interaction_range:
+			is_interaction = true
+		else:
+			touch_initial_direction = position.direction_to(world_position)
+			return
+	if event.is_action_pressed("click"):
+		if position.distance_to(get_global_mouse_position()) < interaction_range:
+			is_interaction = true
+		else:
+			mouse_pressed = true
+	if event.is_action_released("click"):
+		mouse_pressed = false
+	if is_interaction:
 		var target = $RayCast2D.get_collider()
-
 		if target != null:
 			if target.has_method("on_interact"):
 				target.on_interact()
