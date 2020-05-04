@@ -9,7 +9,7 @@ Godot can serve it for you, by clicking on the icon close to the play button wit
 
 To serve it, you can export the project and use a web server to serve the resulting static files. A simple option is to use `python3 -m http.server`, if you have Python installed (you should, since I plan to use it later in this project) and use your local IP address. If this is impossible you can publish the game on any web host (like your own website, Github/Gitlab pages) or if nothing else works try a tool like ngrok.
 
-Notice that both Firefox and Chrome allow you to simulate mobile devices using the web development tools, and I found that mode to replicate well enough the behavior of the real thing. In Firefox is called "responsive design mode" and in Chrome is the "device toolbar", both available in the webdev toolbar.
+Notice that both Firefox and Chrome allow you to simulate mobile devices using the web development tools, and I found that mode to replicate well enough the behavior of the real thing. In Firefox is called "responsive design mode" and in Chrome is the "device toolbar", both available in the webdev toolbar. Godot also has an option under *Project Settings -> Input devices -> Emulate Touch From Mouse*.
 
 You may notice some issue by running the game like this:
 * the portion of the world shown in the window is too big (this was true earlier as well, but with the browser it becomes more visible)
