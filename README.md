@@ -1,5 +1,13 @@
 This project implements a 2D game based on Godot 3.2 and Tiled, with a step by step explanation of the development.
 
+__WARNING: I'm not an expert about Godot at all! Right now this is more a development diary than an actual tutorial, and I retroactively change parts after finding a better approach. PR and comments are welcome, refer to the references below for tutorials__
+
+## References
+
+* [RPG Tutorial by Davide Pesce](https://www.davidepesce.com/godot-tutorials/) - text format, step by step RPG from scratch
+* [HeartBeast](https://www.youtube.com/user/uheartbeast/videos) - a long and very detailed YouTube series about action RPGs
+* [GDQuest tutorials](https://www.gdquest.com/tutorial/) - many topics at different levels, both text and videos
+
 ## Parts
 * [part 0](tutorial/part00.md)
   * Create and integrate a Tiled map in a project, with a character that can move around.
