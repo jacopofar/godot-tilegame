@@ -6,6 +6,7 @@ export var interaction_range: float = 50.0
 
 var mouse_pressed: bool = false
 var touch_pressed: bool = false
+var keyboard_pressed: bool = false
 var touch_initial_direction: Vector2 =  Vector2(0, 1)
 
 func _physics_process(delta):
@@ -15,7 +16,7 @@ func _physics_process(delta):
 		direction = position.direction_to(get_global_mouse_position())
 	elif touch_pressed:
 		direction = touch_initial_direction	
-	else:
+	elif keyboard_pressed:
 		direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 		direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 		
@@ -49,7 +50,20 @@ func _unhandled_input(event):
 	var is_interaction = false
 	if event.is_action_pressed("interact"):
 		is_interaction = true
-	
+	if (
+		event.is_action_pressed("ui_right")
+		or event.is_action_pressed("ui_left")
+		or event.is_action_pressed("ui_up")
+		or event.is_action_pressed("ui_down")		
+		):
+		keyboard_pressed = true
+	if (
+		event.is_action_released("ui_right")
+		or event.is_action_released("ui_left")
+		or event.is_action_released("ui_up")
+		or event.is_action_released("ui_down")		
+		):
+		keyboard_pressed = false
 	if event is InputEventScreenTouch:
 		touch_pressed = event.is_pressed()
 		var world_position = get_canvas_transform().xform_inv(event.position)
