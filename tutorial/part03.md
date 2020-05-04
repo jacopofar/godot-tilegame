@@ -26,7 +26,7 @@ Mobile devices like tables or phones usually have no keyboard, so we need to all
 
 First, let's go to project settings and add a new event called `click`, associated with the left mouse button.
 
-Now, add `var mouse_pressed: bool = false` at the beginning of the player code, and in the `_input` function, add this:
+Now, add `var mouse_pressed: bool = false` at the beginning of the player code, and in the `_unhandled_input` function, add this:
 
 ```GDScript
 	if event.is_action_pressed("click"):
@@ -64,7 +64,7 @@ var touch_pressed: bool = false
 var touch_initial_direction: Vector2 =  Vector2(0, 1)
 ```
 
-then at the beginning of the `_input` function:
+then at the beginning of the `_unhandled_input` function:
 
 ```GDScript
 	if event is InputEventScreenTouch:
@@ -153,7 +153,7 @@ func _physics_process(delta):
 		$RayCast2D.cast_to = direction.normalized() * 32
 
 
-func _input(event):
+func _unhandled_input(event):
 	# see https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html
 	var is_interaction = false
 	if event.is_action_pressed("interact"):

@@ -12,12 +12,12 @@ Now in the `Player` scene we need to detect when the inetract action is happenin
 In the Player code let's add this:
 
 ```GDScript
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 		print("interact!")
 ```
 
-The `_input` function is called on any input event, and it receives an `event` object with all the details.
+The `_unhandled_input` function is called on any [input event that was not handled](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#how-does-it-work), and it receives an `event` object with all the details.
 If you play now you'll see that every time you press the interact key the text is printed in the console.
 
 To detect the target of the interaction (if any) we need a way to query the game area in front of the player, and for that Godot offers the `RayCast2D` Node. It is designed to detect what is the first object in some direction froma vector, as if we cast a ray from it.
@@ -33,7 +33,7 @@ This code goes in the same place of the `move_and_collide` call, so when we move
 Now we can modify the interaction code to detect the object we are facing:
 
 ```GDScript
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 		var target = $RayCast2D.get_collider()
 		print(target)
@@ -44,7 +44,7 @@ if you play with it you'll notice that it prints `null` if we are not facing any
 Let's add an interaction, like this: if the object has a method called `on_interact` we simply invoke it:
 
 ```GDScript
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("interact"):
 		var target = $RayCast2D.get_collider()
 

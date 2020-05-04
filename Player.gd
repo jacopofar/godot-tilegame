@@ -44,7 +44,7 @@ func _physics_process(delta):
 		$RayCast2D.cast_to = direction.normalized() * 32
 		
 	
-func _input(event):
+func _unhandled_input(event):
 	# see https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html
 	var is_interaction = false
 	if event.is_action_pressed("interact"):
