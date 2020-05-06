@@ -7,7 +7,7 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
 * [RPG Tutorial by Davide Pesce](https://www.davidepesce.com/godot-tutorials/) - text format, step by step RPG from scratch
 * [HeartBeast](https://www.youtube.com/user/uheartbeast/videos) - a long and very detailed YouTube series about action RPGs
 * [GDQuest tutorials](https://www.gdquest.com/tutorial/) - many topics at different levels, both text and videos
-
+* [Godot recipes](https://godotrecipes.com/) - Excellent collection of tricks and solutions to common problems
 ## Parts
 * [part 0](tutorial/part00.md)
   * Create and integrate a Tiled map in a project, with a character that can move around.
