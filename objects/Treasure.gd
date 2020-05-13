@@ -9,4 +9,4 @@ func on_interact():
 	else:
 		opened = true
 		$Sprite.frame = 1
-		ComicBubble.say(self, "This chest contains:" + content_description)
+		ComicBubble.say(self, "This chest contains: " + content_description)

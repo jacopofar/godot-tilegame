@@ -5,7 +5,8 @@ func say(target: Node2D, text: String):
 	comic.get_node("Label").text = text
 	comic.offset = target.position
 	target.add_child(comic)
+	comic.get_node("AnimationPlayer").play("fadeout")
 
-func _input(event):
-	if event.is_action_pressed("interact"):
-		print("I am comic bubble, they are interacting")
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	queue_free()
