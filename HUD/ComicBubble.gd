@@ -10,10 +10,15 @@ static func say(target: Node2D, text: String):
 	ComicBubble.current_comic = comic
 
 func _input(event):
-	if current_comic != null:
+	if current_comic == null:
+		return
+	# TODO here there's no management of the other types of input
+	# but this is just an experiment to see how to intercept input in Godot
+	if event.is_action_pressed("interact"):
 		current_comic.queue_free()
 		current_comic = null
 		print("I am comic bubble, they are interacting with", event)
 		get_tree().set_input_as_handled()
-		
+	else:
+		print("Comig bubble does not know how to react to", event)
 
