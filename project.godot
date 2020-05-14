@@ -32,7 +32,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "vnen.tiled_importer" )
+enabled=PoolStringArray( "GodotTIE", "vnen.tiled_importer" )
 
 [input]
 

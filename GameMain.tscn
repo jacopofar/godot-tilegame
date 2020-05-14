@@ -1,12 +1,37 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://maps/world01.tmx" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/GodotTIE/text_interface_engine.gd" type="Script" id=3]
+[ext_resource path="res://NotoSans-SemiCondensedSemiBold.ttf" type="DynamicFontData" id=4]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 4 )
+
+[node name="Main" type="Node2D"]
 
 [node name="world01" parent="." instance=ExtResource( 1 )]
-position = Vector2( -31.261, -32.5333 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 96.002, 86.8069 )
+position = Vector2( 99.5731, 128.232 )
+
+[node name="TextConvCanvas" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="TextConvCanvas"]
+margin_left = 10.0
+margin_top = 400.0
+margin_right = 500.0
+margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextInterfaceEngine" type="ReferenceRect" parent="TextConvCanvas/ColorRect"]
+margin_right = 490.0
+margin_bottom = 100.0
+editor_only = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+FONT = SubResource( 1 )
