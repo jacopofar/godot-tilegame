@@ -36,5 +36,12 @@ The plugin is not updated since 2018 at the moment of writing (May 2020) but wor
 Godot 3.2.
 
 By default it ships with the __Cave-Story__ font, a nice font from the homonymous game with a CC-BY-SA license.
-I like it, but keep in mind that this font does not cover non-latin characters. The plugin itself prunes them out from
-the text so I'll try to make it work with another font and remove this limitation.
+I like it, but keep in mind that this font does not cover non-latin characters. So I decided to use a
+[Google Noto Font](https://www.google.com/get/noto/), which is still TTF and free and covers many scripts.
+Additionally, a [small change to the plugin](https://github.com/henriquelalves/GodotTIE/pull/12) allows to input
+Unicode characters.
+
+To install the script you can use the Godot addon manager and install GodotTIE or just copy-paste the files. Then you
+have to enable the addon pn the project settings as usual.
+
+TODO: describe the rest of the procedure

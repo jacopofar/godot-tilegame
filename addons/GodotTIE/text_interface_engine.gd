@@ -5,8 +5,6 @@
 # Intern initializations
 extends ReferenceRect # Extends from ReferenceFrame
 
-const _ARRAY_CHARS = [" ","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/","0","1","2","3","4","5","6","7","8","9",":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","{","|","}","~"]
-
 const STATE_WAITING = 0
 const STATE_OUTPUT = 1
 const STATE_INPUT = 2
@@ -36,6 +34,8 @@ onready var _blink_input_timer = 0
 onready var _input_timer_limit = 1
 onready var _input_index = 0
 
+var hidden = true
+
 # =============================================== 
 # Text display properties!
 export(bool) var SCROLL_ON_MAX_LINES = true # If this is true, the text buffer update will stop after reaching the maximum number of lines; else, it will stop to wait for user input, and than clear the text.
@@ -58,6 +58,12 @@ signal tag_buff(tag) # When the _buffer reaches a buff which is tagged
 signal buff_cleared() # When the buffer's been cleared of text
 # ===============================================
 
+func _show_box():
+	get_parent().color = Color(1, 1, 1, 1)
+
+func _hide_box():
+	get_parent().color = Color(1, 1, 1, 0)
+
 func buff_debug(f, lab = false, arg0 = null, push_front = false): # For simple debug purposes; use with care
 	var b = {"buff_type":BUFF_DEBUG,"debug_function":f,"debug_label":lab,"debug_arg":arg0}
 	if(! push_front):
@@ -66,6 +72,8 @@ func buff_debug(f, lab = false, arg0 = null, push_front = false): # For simple d
 		_buffer.push_front(b)
 
 func buff_text(text, vel = 0, tag = "", push_front = false): # The text for the output, and its printing velocity (per character)
+	hidden = false
+	_show_box()
 	var b = {"buff_type":BUFF_TEXT, "buff_text":text, "buff_vel":vel, "buff_tag":tag}
 	if !push_front:
 		_buffer.append(b)
@@ -275,8 +283,7 @@ func _physics_process(delta):
 			if(_blink_input_timer > _input_timer_limit):
 				_blink_input_timer -= _input_timer_limit
 				_blink_input()
-	
-	pass
+
 
 func _input(event):
 	if(event is InputEventKey and event.is_pressed() == true ):
@@ -310,10 +317,21 @@ func _input(event):
 						i-=1
 				set_state(STATE_OUTPUT)
 			
-			elif(event.unicode >= 32 and event.unicode <= 126): # Add character
+			else: # Add character
 				if(INPUT_CHARACTERS_LIMIT < 0 or input.length() < INPUT_CHARACTERS_LIMIT):
-					_label_print(_ARRAY_CHARS[event.unicode-32])
-
+					_label_print(char(event.unicode))
+		# if the buffer is not empty the dialogue is not over
+		if _buffer.size() > 0:
+			# let's wait for it without letting the input propagate
+			get_tree().set_input_as_handled()
+		else:
+			if not hidden:
+				# the last input closes the box but still is not propagated
+				get_tree().set_input_as_handled()
+				_hide_box()
+				clear_text()
+				hidden = true
+			
 # Private
 func _clear_skipped_lines():
 	var i = 0
