@@ -13,7 +13,7 @@ font_data = ExtResource( 4 )
 
 [node name="TextConvCanvas" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="NinePatchRect" parent="TextConvCanvas"]
+[node name="DialogRect" type="NinePatchRect" parent="TextConvCanvas"]
 visible = false
 margin_left = 10.0
 margin_top = 400.0
@@ -29,7 +29,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextInterfaceEngine" type="ReferenceRect" parent="TextConvCanvas/ColorRect"]
+[node name="TextInterfaceEngine" type="ReferenceRect" parent="TextConvCanvas/DialogRect"]
 margin_left = 5.0
 margin_right = 485.0
 margin_bottom = 100.0

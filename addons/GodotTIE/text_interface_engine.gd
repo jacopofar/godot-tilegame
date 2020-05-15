@@ -34,7 +34,7 @@ onready var _blink_input_timer = 0
 onready var _input_timer_limit = 1
 onready var _input_index = 0
 
-var hidden = true
+var hidden: bool = true
 
 # =============================================== 
 # Text display properties!
@@ -60,9 +60,12 @@ signal buff_cleared() # When the buffer's been cleared of text
 
 func _show_box():
 	get_parent().visible = true
-
+	hidden = false
+	
 func _hide_box():
 	get_parent().visible = false
+	clear_text()
+	hidden = true
 
 func buff_debug(f, lab = false, arg0 = null, push_front = false): # For simple debug purposes; use with care
 	var b = {"buff_type":BUFF_DEBUG,"debug_function":f,"debug_label":lab,"debug_arg":arg0}
@@ -72,7 +75,6 @@ func buff_debug(f, lab = false, arg0 = null, push_front = false): # For simple d
 		_buffer.push_front(b)
 
 func buff_text(text, vel = 0, tag = "", push_front = false): # The text for the output, and its printing velocity (per character)
-	hidden = false
 	_show_box()
 	var b = {"buff_type":BUFF_TEXT, "buff_text":text, "buff_vel":vel, "buff_tag":tag}
 	if !push_front:
@@ -180,7 +182,7 @@ func _ready():
 	# Setting font of the text
 	if(FONT != null):
 		_label.add_font_override("font", FONT)
-#	set_size(Vector2(200, 200))
+
 	# Setting size of the frame
 	_max_lines = floor(get_size().y/(_label.get_line_height()+_label.get_constant("line_spacing")))
 	_label.set_size(Vector2(get_size().x,get_size().y))
@@ -295,8 +297,7 @@ func capture_input():
 			# the last input closes the box but still is not propagated
 			get_tree().set_input_as_handled()
 			_hide_box()
-			clear_text()
-			hidden = true
+			
 
 func resume_break():
 	emit_signal("resume_break")
@@ -337,7 +338,7 @@ func _input(event):
 				if(INPUT_CHARACTERS_LIMIT < 0 or input.length() < INPUT_CHARACTERS_LIMIT):
 					_label_print(char(event.unicode))
 		capture_input()
-		
+	
 	# the player can click to proceed, too, to read further
 	if event.is_action_pressed("click"):
 		# is on a break? resume
