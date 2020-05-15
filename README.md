@@ -27,6 +27,7 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
 * [part 4](tutorial/part04.md)
   * Make the text fade and disappear
   * Integrate with GodotTIE and adapt it to mouse and multitouch
+  * rename and prune a bit the Dialogue autoloaded object
 
 ## TODO
 - [x] Instantiate nodes based on map objects with an import script
