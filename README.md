@@ -39,8 +39,10 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
 - [x] Add [Mouse movement](https://www.davidepesce.com/2019/10/14/godot-tutorial-5-1-dragging-player-with-mouse/) as alternative to keyboard, and try on mobile
 - [x] Embellish the message bubble and make it disappear
 - [x] Integrate with GodotTIE
-- [ ] Define an inventory as a shared object in autoload
+- [ ] Change name of autoloaded object, make it generic for all the Game-level calls instead of ComicBubble
+- [ ] Define an inventory as a shared property in autoload
 - [ ] Allow dialogues and choices using the message bubble
+- [ ] Allow map switching, maybe push the map to its own scene and load it in Main
 - [ ] Make an NPC which moves around
 - [ ] Try tiled worlds, check integration with the plugin
 - [ ] Send the player position to a server
