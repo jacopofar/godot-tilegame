@@ -68,6 +68,9 @@ func _unhandled_input(event):
 		var world_position = get_canvas_transform().xform_inv(event.position)
 		if position.distance_to(world_position) < interaction_range:
 			is_interaction = true
+			# the intent was not to move, pretend it's not touching to not
+			# trigger the movement
+			touch_pressed = false
 		else:
 			touch_initial_direction = position.direction_to(world_position)
 			return

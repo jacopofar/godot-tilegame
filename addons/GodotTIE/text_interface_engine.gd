@@ -59,10 +59,10 @@ signal buff_cleared() # When the buffer's been cleared of text
 # ===============================================
 
 func _show_box():
-	get_parent().color = Color(1, 1, 1, 1)
+	get_parent().visible = true
 
 func _hide_box():
-	get_parent().color = Color(1, 1, 1, 0)
+	get_parent().visible = false
 
 func buff_debug(f, lab = false, arg0 = null, push_front = false): # For simple debug purposes; use with care
 	var b = {"buff_type":BUFF_DEBUG,"debug_function":f,"debug_label":lab,"debug_arg":arg0}
@@ -177,7 +177,6 @@ func _ready():
 	set_process_input(true)
 	
 	add_child(_label)
-	
 	# Setting font of the text
 	if(FONT != null):
 		_label.add_font_override("font", FONT)
@@ -284,7 +283,26 @@ func _physics_process(delta):
 				_blink_input_timer -= _input_timer_limit
 				_blink_input()
 
+# helper to react to the input event, preventing it from propagating
+# and closing the dialogue box when done
+func capture_input():
+	# if the buffer is not empty the dialogue is not over
+	if _buffer.size() > 0:
+		# let's wait for it without letting the input propagate
+		get_tree().set_input_as_handled()
+	else:	
+		if not hidden:
+			# the last input closes the box but still is not propagated
+			get_tree().set_input_as_handled()
+			_hide_box()
+			clear_text()
+			hidden = true
 
+func resume_break():
+	emit_signal("resume_break")
+	_buffer.pop_front() # Pop out break buff
+	_on_break = false
+	
 func _input(event):
 	if(event is InputEventKey and event.is_pressed() == true ):
 		if(SCROLL_SKIPPED_LINES and event.scancode == KEY_UP or event.scancode == KEY_DOWN): # User is just scrolling the text
@@ -296,9 +314,7 @@ func _input(event):
 					_label.set_lines_skipped(_label.get_lines_skipped()+1)
 		elif(_state == 1 and _on_break): # If its on a break
 			if(event.scancode == _break_key):
-				emit_signal("resume_break")
-				_buffer.pop_front() # Pop out break buff
-				_on_break = false
+				resume_break()
 		elif(_state == 2): # If its on the input state
 			if(BLINKING_INPUT): # Stop blinking line while inputing
 				_blink_input(true) 
@@ -320,18 +336,28 @@ func _input(event):
 			else: # Add character
 				if(INPUT_CHARACTERS_LIMIT < 0 or input.length() < INPUT_CHARACTERS_LIMIT):
 					_label_print(char(event.unicode))
-		# if the buffer is not empty the dialogue is not over
-		if _buffer.size() > 0:
-			# let's wait for it without letting the input propagate
+		capture_input()
+		
+	# the player can click to proceed, too, to read further
+	if event.is_action_pressed("click"):
+		# is on a break? resume
+		if(_state == 1 and _on_break):
+			resume_break()
+		capture_input()
+	# do not have a rogue release event propagate
+	if event.is_action_released("click"):
+		if not hidden:
 			get_tree().set_input_as_handled()
+	# same for touch screen
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			# is on a break? resume
+			if(_state == 1 and _on_break):
+				resume_break()
+			capture_input()
 		else:
 			if not hidden:
-				# the last input closes the box but still is not propagated
 				get_tree().set_input_as_handled()
-				_hide_box()
-				clear_text()
-				hidden = true
-			
 # Private
 func _clear_skipped_lines():
 	var i = 0

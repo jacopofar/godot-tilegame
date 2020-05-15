@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://maps/world01.tmx" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://addons/GodotTIE/text_interface_engine.gd" type="Script" id=3]
 [ext_resource path="res://NotoSans-SemiCondensedSemiBold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://HUD/dialogueframe.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 4 )
@@ -12,18 +13,25 @@ font_data = ExtResource( 4 )
 
 [node name="TextConvCanvas" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="TextConvCanvas"]
+[node name="ColorRect" type="NinePatchRect" parent="TextConvCanvas"]
+visible = false
 margin_left = 10.0
 margin_top = 400.0
 margin_right = 500.0
 margin_bottom = 500.0
-color = Color( 1, 1, 1, 0 )
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 32, 31 )
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextInterfaceEngine" type="ReferenceRect" parent="TextConvCanvas/ColorRect"]
-margin_right = 490.0
+margin_left = 5.0
+margin_right = 485.0
 margin_bottom = 100.0
 border_color = Color( 1, 0, 0, 0.223529 )
 script = ExtResource( 3 )
