@@ -1,6 +1,6 @@
-extends CanvasLayer
+extends Node
 
-func say(target: Node2D, text: String, color=Color(0,0,0)):
+func say(text: String, color=Color(0,0,0)):
 	var tie = get_node("/root/Main/TextConvCanvas/DialogRect/TextInterfaceEngine")
 	tie.set_color(color)
 	tie.buff_text("\n")

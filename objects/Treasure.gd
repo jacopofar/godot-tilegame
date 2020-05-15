@@ -5,9 +5,9 @@ var opened = false
 
 func on_interact():
 	if opened:
-		ComicBubble.say(self, "Already opened...")
+		Dialogue.say("Already opened...")
 	else:
 		opened = true
 		$Sprite.frame = 1
 		print("CONTENT:", content_description)
-		ComicBubble.say(self, "This chest contains: " + content_description)
+		Dialogue.say("This chest contains: " + content_description)

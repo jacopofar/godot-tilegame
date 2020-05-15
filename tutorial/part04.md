@@ -222,3 +222,11 @@ In the `_physics_process` we change the check for the direction like this:
 ```
 
 the last `elif` ensures the input from the keyboard is ignored if the Player node didn't receive the proper key press.
+
+### Change the name of the ComicBubble
+
+At this point the name `ComicBubble` is not very telling, and so I rename it to `Dialogue`. Also I change its type to
+Node and remove `target` from the arguments of `say()`, it's not used since the dialogue box does not need a target to
+set its coordinates.
+Unfortunately Godot doesn't automatically rename references, so ou have to go to the settings and delete the now invalid
+Autoload object and put the new name back, and change the reference in `TreasureChest` to refer to it as well.
