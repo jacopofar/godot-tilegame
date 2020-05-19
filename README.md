@@ -28,6 +28,8 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
   * Make the text fade and disappear
   * Integrate with GodotTIE and adapt it to mouse and multitouch
   * rename and prune a bit the Dialogue autoloaded object
+* [part 5](tutorial/part05.md)
+  * Add an inventory and a global game state
 
 ## TODO / roadmap
 - [x] Instantiate nodes based on map objects with an import script
@@ -41,8 +43,10 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
 - [x] Embellish the message bubble and make it disappear
 - [x] Integrate with GodotTIE
 - [x] Change name of autoloaded object, make it generic for all the Game-level calls instead of ComicBubble
-- [ ] Define an inventory as a shared property in autoload
-- [ ] Allow dialogues and choices using the message bubble
+- [x] Define an inventory as a shared property in autoload
+- [ ] Read id-name inventory mapping from a JSON, with human-readable string ids and arbitrary equip metadata
+- [ ] Implement game saving under `User://`, have player spawn in saved position
+- [ ] Allow dialogues and choices using the message bubble (note: check other dialogue plugins)
 - [ ] Allow map switching, maybe push the map to its own scene and load it in Main
 - [ ] Make an NPC which moves around
 - [ ] Try tiled worlds, check integration with the plugin
