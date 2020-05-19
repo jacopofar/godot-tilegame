@@ -30,6 +30,7 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
   * rename and prune a bit the Dialogue autoloaded object
 * [part 5](tutorial/part05.md)
   * Add an inventory and a global game state
+  * Create a central item catalogue file
 
 ## TODO / roadmap
 - [x] Instantiate nodes based on map objects with an import script
@@ -44,7 +45,8 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
 - [x] Integrate with GodotTIE
 - [x] Change name of autoloaded object, make it generic for all the Game-level calls instead of ComicBubble
 - [x] Define an inventory as a shared property in autoload
-- [ ] Read id-name inventory mapping from a JSON, with human-readable string ids and arbitrary equip metadata
+- [x] Read id-name inventory mapping from a JSON, with human-readable string ids and arbitrary equip metadata
+- [ ] Move catalogue logic in its own AutoLoad
 - [ ] Implement game saving under `User://`, have player spawn in saved position
 - [ ] Allow dialogues and choices using the message bubble (note: check other dialogue plugins)
 - [ ] Allow map switching, maybe push the map to its own scene and load it in Main
