@@ -20,7 +20,7 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
   * Display an essential message.
   * Move shared logic to an AutoLoad (singleton) scene
   * Assign custom properties from the map to the scene
-  * Reorganize the folders a
+  * Reorganize the folders a bit
 * [part 3](tutorial/part03.md)
   * Export the game so far for the web
   * Add mouse and multitouch integration to work on mobile
@@ -29,7 +29,7 @@ __WARNING: I'm not an expert about Godot at all! Right now this is more a develo
   * Integrate with GodotTIE and adapt it to mouse and multitouch
   * rename and prune a bit the Dialogue autoloaded object
 
-## TODO
+## TODO / roadmap
 - [x] Instantiate nodes based on map objects with an import script
 - [x] Have the chest interact to an action button, by opening
 - [x] Show a message when the chest is open
