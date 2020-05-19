@@ -27,7 +27,7 @@ onready var _max_lines_reached = false
 onready var _buff_beginning = true
 onready var _turbo = false
 onready var _max_lines = 0
-onready var _break_key = KEY_ENTER
+onready var _break_keys = [KEY_ENTER, KEY_SPACE]
 
 onready var _blink_input_visible = false
 onready var _blink_input_timer = 0
@@ -163,8 +163,6 @@ func set_state(i): # Changes the state of the Text Interface Engine
 	if(i == 2): # Set input index to last character on the label
 		_input_index = _label.get_text().length()
 
-func set_break_key_by_scancode(i): # Set a new key to resume breaks (uses scancode!)
-	_break_key = i
 
 func set_buff_speed(v): # Changes the velocity of the text being printed
 	if (_buffer[0]["buff_type"] == BUFF_TEXT):
