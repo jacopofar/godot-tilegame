@@ -32,8 +32,8 @@ On the Label I set `Autowrap=On` to have the text wrap, and resize it to fit mor
 This "bubble" is not even a bubble at the moment, and it works only for short messages. An adventure game however needs
 to show longer texts, allow choices and inputs, show effects and more, so luckily someone developed
 [a plugin called gododTIE](https://github.com/henriquelalves/GodotTIE), where TIE stands for Text Interface Engine.
-The plugin is not updated since 2018 at the moment of writing (May 2020) but works fine with the latest stable,
-Godot 3.2.
+The plugin ~~is not updated since 2018 at the moment of writing~~ was just updated with my PR allowing for Unicode input
+(May 2020) and works fine with the latest stable, Godot 3.2.
 
 By default it ships with the __Cave-Story__ font, a nice font from the homonymous game with a CC-BY-SA license.
 I like it, but keep in mind that this font does not cover non-latin characters. So I decided to use a
