@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+var known_items = {}
+var possessed_items: Array = []
+
+func _ready():
+	var f = File.new()
+	f.open(\"res://data/items.json\", File.READ)
+	known_items = JSON.parse(f.get_as_text())
+	f.close()
+
+func register_item(id: int, name: String):
+	known_items[id] = name
+
+func get_id_from_name(name: String):
+	var pos = known_items.values().find(name)
+	if pos == -1:
+		return -1
+	else:
+		return known_items.keys()[pos]
+
+func pick_item(id: int):
+	possessed_items.append(id)
+
+func has_item(id: int):
+	return possessed_items.has(id)
+"
+
+[node name="GameState" type="Node"]
+script = SubResource( 1 )
