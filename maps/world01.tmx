@@ -2156,21 +2156,21 @@
  <objectgroup id="3" name="Objects" offsetx="43.5" offsety="22.5">
   <object id="7" name="Another treasure chest" x="128" y="256">
    <properties>
-    <property name="content_description" value="Potion or something"/>
+    <property name="content_id" value="UNOBTANIUM"/>
     <property name="otype" value="Treasure"/>
    </properties>
    <point/>
   </object>
   <object id="8" name="Treasure chest" x="192" y="256">
    <properties>
-    <property name="content_description" value="Magic key"/>
+    <property name="content_id" value="MAGIC_KEY"/>
     <property name="otype" value="Treasure"/>
    </properties>
    <point/>
   </object>
   <object id="9" name="duplicate_chest" x="250" y="257">
    <properties>
-    <property name="content_description" value="Magic key"/>
+    <property name="content_id" value="MAGIC_KEY"/>
     <property name="otype" value="Treasure"/>
    </properties>
    <point/>

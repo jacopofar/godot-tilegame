@@ -27,7 +27,7 @@ func post_import(scene):
 
 				if node_to_clone:
 					var new_instance = node_to_clone.instance()
-					new_instance.content_description = object.get_meta("content_description")
+					new_instance.content_id = object.get_meta("content_id")
 					new_instance.position = (object.position)
 					# Add the node as a child of the scene and sets
 					# the scene as its owner. Otherwise, the scene doesn't get modified

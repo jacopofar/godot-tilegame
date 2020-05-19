@@ -9,23 +9,13 @@ var possessed_items: Array = []
 func _ready():
 	var f = File.new()
 	f.open(\"res://data/items.json\", File.READ)
-	known_items = JSON.parse(f.get_as_text())
+	known_items = JSON.parse(f.get_as_text()).result
 	f.close()
 
-func register_item(id: int, name: String):
-	known_items[id] = name
-
-func get_id_from_name(name: String):
-	var pos = known_items.values().find(name)
-	if pos == -1:
-		return -1
-	else:
-		return known_items.keys()[pos]
-
-func pick_item(id: int):
+func pick_item(id: String):
 	possessed_items.append(id)
 
-func has_item(id: int):
+func has_item(id: String):
 	return possessed_items.has(id)
 "
 

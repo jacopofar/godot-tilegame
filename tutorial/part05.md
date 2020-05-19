@@ -70,8 +70,78 @@ func on_interact():
 by adding more treasure chests with the same item you can see that the dialogue content changes depending on the fact a
 similar item was already taken.
 A problem to notice is that we simply randomly invent an item ID when it's not found, so not only it could collide but
-there's no mapping shared across sessions, and each time we play the id for an item will be different. This requires a
-central table mapping the ids to the items.
+there's no mapping shared across sessions, and each time we play the id for an item will be different. On the other hand
+using the name as the identifier makes harder to change it later so it's not an ideal solution.
+We need a centralized mapping between the ids and the item names and properties.
 
 ## Create a catalogue of items
 
+A catalogue of items can be stored in a single file for the whole project, for example a JSON. This format is simple yet
+flexible and Godot can parse it out of the box.
+Let's create a folder `data` in the project root, containing a file `items.json`, with this content:
+
+```JSON
+{
+    "MAGIC_KEY": {"name": "magic key"},
+    "UNOBTANIUM": {"name": "Unobtanium"}
+}
+```
+
+you'll notice Godot complains when trying to parse the file. This is because the Tiled importer by defaults considers
+every json file as a Tiled map (as well as the tmx files). So go to *Project Settings -> Tiled importer* and disable the
+option to load JSON files.
+
+The GameState code becomes:
+
+```GDScript
+extends Node
+
+var known_items = {}
+var possessed_items: Array = []
+
+func _ready():
+	var f = File.new()
+	f.open("res://data/items.json", File.READ)
+	known_items = JSON.parse(f.get_as_text()).result
+	f.close()
+
+func pick_item(id: String):
+	possessed_items.append(id)
+
+func has_item(id: String):
+	return possessed_items.has(id)
+```
+
+now the id is a string, but unrelated to the name shown to he player. This way it remains recognizable while acting as
+an identifier. The code to register an item is gone since it's all loaded from the file, and the id type is now
+`String`.
+
+The TreasureChest script becomes:
+
+```GDScript
+
+extends KinematicBody2D
+export var content_id: String = "MISSING"
+
+var opened = false
+
+func on_interact():
+	if opened:
+		Dialogue.say("Already opened...")
+	else:
+		opened = true
+		$Sprite.frame = 1
+
+		Dialogue.say("This chest contains: " + content_id)
+		if GameState.has_item(content_id):
+			Dialogue.say("You already had one")
+		else:
+			Dialogue.say("It's new!")
+		GameState.pick_item(content_id)
+```
+
+it's simpler since there's no registration.
+
+We need to change the property name in Tiled to `content_id`, and use the values from items.json.
+Then, it's necessary to change the property name in `importer.gd` as well to transfer the value from the Tiled map to
+the instances of TreasureChest.

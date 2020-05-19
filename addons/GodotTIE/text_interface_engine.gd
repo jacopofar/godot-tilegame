@@ -312,7 +312,7 @@ func _input(event):
 				if(_label.get_lines_skipped() < _label.get_line_count()-_max_lines):
 					_label.set_lines_skipped(_label.get_lines_skipped()+1)
 		elif(_state == 1 and _on_break): # If its on a break
-			if(event.scancode == _break_key):
+			if(_break_keys.has(event.scancode)):
 				resume_break()
 		elif(_state == 2): # If its on the input state
 			if(BLINKING_INPUT): # Stop blinking line while inputing
