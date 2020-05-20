@@ -283,11 +283,18 @@ func _physics_process(delta):
 				_blink_input_timer -= _input_timer_limit
 				_blink_input()
 
+# does the buffer contain non-whitespace stuff yet?
+func _is_buffer_over():
+	for el in _buffer:
+		if el["buff_type"] != BUFF_TEXT or el["buff_text"].replace("\n", "").length() > 0:
+			return false
+	return true
+
 # helper to react to the input event, preventing it from propagating
 # and closing the dialogue box when done
 func capture_input():
 	# if the buffer is not empty the dialogue is not over
-	if _buffer.size() > 0:
+	if not _is_buffer_over():
 		# let's wait for it without letting the input propagate
 		get_tree().set_input_as_handled()
 	else:	
@@ -343,7 +350,7 @@ func _input(event):
 		if(_state == 1 and _on_break):
 			resume_break()
 		capture_input()
-	# do not have a rogue release event propagate
+	# do not let a rogue release event propagate
 	if event.is_action_released("click"):
 		if not hidden:
 			get_tree().set_input_as_handled()
@@ -355,6 +362,7 @@ func _input(event):
 				resume_break()
 			capture_input()
 		else:
+			# the release event is not used but is caught to avoid spurious events propagation
 			if not hidden:
 				get_tree().set_input_as_handled()
 # Private

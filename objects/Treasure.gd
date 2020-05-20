@@ -9,8 +9,8 @@ func on_interact():
 	else:
 		opened = true
 		$Sprite.frame = 1
-
 		Dialogue.say("This chest contains: " + content_id)
+
 		if GameState.has_item(content_id):
 			Dialogue.say("You already had one")
 		else:

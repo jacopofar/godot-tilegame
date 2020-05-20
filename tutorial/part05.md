@@ -140,7 +140,7 @@ func on_interact():
 		GameState.pick_item(content_id)
 ```
 
-it's simpler since there's no registration.
+it's simpler since there's no item registration anymore.
 
 We need to change the property name in Tiled to `content_id`, and use the values from items.json.
 Then, it's necessary to change the property name in `importer.gd` as well to transfer the value from the Tiled map to
