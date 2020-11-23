@@ -1,6 +1,6 @@
 This project implements a 2D game based on Godot 3.2 and Tiled, with a step by step explanation of the development.
 
-__WARNING: I'm not an expert about Godot at all! Right now this is more a development diary than an actual tutorial, and I retroactively change parts after finding a better approach. PR and comments are welcome, refer to the references below for tutorials__
+__WARNING: this project is archived because there are better solutions to integrate Tiled map (and tilemaps in Godot are going to change soon with 4.0) and a good part of it now lives in its own [plugin](https://github.com/jacopofar/blocking-dialog-box)__
 
 ## References
 
